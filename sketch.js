@@ -37,10 +37,13 @@ function setup() {
 }
 
 function draw() { 
-  background(backImage);
+  background("olive");
+   drawSprites();
+  
+ stroke("white");
   textSize(20);
   fill("white");
-  text("Score: " +score,650,50);
+  text("Score: "+ score, 550,50);
   if(gameState===PLAY){
    
   if(backgr.x<100){
@@ -66,7 +69,7 @@ function draw() {
     mkObs();
   mkFud();
 
-  drawSprites();
+ 
  
   }else if(gameState===END){
     backgr.velocityX=0;
@@ -94,12 +97,11 @@ function mkFud(){
 }
 
 function mkObs(){
-  if(frameCount % 160 === 0){
-    var obs = createSprite(700,395,40,10);
-    obs.y = random(120,300);
-    obs.scale=0.3;
-    obs.velocityX=-4;
+  if(frameCount % 300 === 0){
+    var obs = createSprite(800,350,10,40);
     obs.addImage(obsI);
+    obs.velocityX=-(4 + 2*score/100);
+    obs.scale=0.2;
     obs.lifetime=300;
      obsG.add(obs);
   }
